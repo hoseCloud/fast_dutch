@@ -1,3 +1,4 @@
+import 'package:fast_dutch/screens/group_screen.dart';
 import 'package:fast_dutch/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +7,7 @@ class MainScreen extends StatefulWidget {
 
   final bodyWidgets = [
     const HomeScreen(),
-    const Text('group'),
+    const GroupScreen(),
     const Text('member'),
     const Text('reciept'),
   ];
