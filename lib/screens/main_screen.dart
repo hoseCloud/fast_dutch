@@ -51,9 +51,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ],
       ),
-      body: Center(
-        child: widget.bodyWidgets.elementAt(currentIndex),
-      ),
+      body: widget.bodyWidgets.elementAt(currentIndex),
     );
   }
 }
