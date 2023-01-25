@@ -1,14 +1,15 @@
+import 'package:fast_dutch/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
+  MainScreen({super.key});
+
   final bodyWidgets = [
-    const Text('home'),
+    const HomeScreen(),
     const Text('group'),
     const Text('member'),
     const Text('reciept'),
   ];
-
-  MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
