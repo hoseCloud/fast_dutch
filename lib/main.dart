@@ -1,3 +1,4 @@
+import 'package:fast_dutch/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -12,9 +13,9 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        colorSchemeSeed: const Color.fromARGB(255, 15, 15, 15),
       ),
-      home: Container(),
+      home: MainScreen(),
     );
   }
 }
