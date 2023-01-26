@@ -8,6 +8,10 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  void onTapAddReciept() {
+    print('hi');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,8 +36,34 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           Flexible(
             flex: 1,
-            child: Container(
-              color: Colors.red,
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: GestureDetector(
+                onTap: onTapAddReciept,
+                child: Container(
+                  clipBehavior: Clip.hardEdge,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.grey,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Icon(
+                        Icons.add,
+                        size: 36,
+                      ),
+                      Text(
+                        'Add reciept',
+                        style: TextStyle(
+                          fontSize: 36,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         ],
