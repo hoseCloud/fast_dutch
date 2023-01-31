@@ -1,5 +1,7 @@
 import 'package:fast_dutch/screens/group_screen.dart';
 import 'package:fast_dutch/screens/home_screen.dart';
+import 'package:fast_dutch/screens/member_screen.dart';
+import 'package:fast_dutch/screens/reciept_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -8,8 +10,8 @@ class MainScreen extends StatefulWidget {
   final bodyWidgets = [
     const HomeScreen(),
     const GroupScreen(),
-    const Text('member'),
-    const Text('reciept'),
+    const MemberScreen(),
+    const RecieptScreen(),
   ];
 
   @override
