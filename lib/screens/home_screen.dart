@@ -1,3 +1,4 @@
+import 'package:fast_dutch/screens/add_reciept_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -9,7 +10,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   void onTapAddReciept() {
-    print('hi');
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const AddRecieptScreen(
+          group: 'hello',
+        ),
+      ),
+    );
   }
 
   @override
