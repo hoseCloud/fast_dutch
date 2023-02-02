@@ -1,19 +1,29 @@
-import 'package:fast_dutch/models/group_model.dart';
-import 'package:fast_dutch/models/member_model.dart';
-
 class ReceiptModel {
-  final DateTime id = DateTime.now();
-  final GroupModel? group;
-  final String? title;
-  final int? price;
-  final List<MemberModel>? payers;
-  final List<MemberModel>? dutches;
+  final String id = DateTime.now().toString();
+  String? groupId;
+  String? title;
+  int? price;
+  Set<String>? payerIds;
+  Set<String>? dutchIds;
 
   ReceiptModel({
-    this.group,
+    this.groupId,
     this.title,
     this.price,
-    this.payers,
-    this.dutches,
+    this.payerIds,
+    this.dutchIds,
   });
+  ReceiptModel.fromJson(Map<String, dynamic> json) {
+    groupId = json["group"];
+    title = json["title"];
+    price = int.parse(json["price"]);
+    payerIds ??= {};
+    for (var payerId in json["payerIds"]) {
+      payerIds!.add(payerId["id"]);
+    }
+    dutchIds ??= {};
+    for (var dutchId in json["dutchIds"]) {
+      dutchIds!.add(dutchId["id"]);
+    }
+  }
 }
