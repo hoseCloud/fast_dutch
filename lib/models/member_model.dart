@@ -1,11 +1,19 @@
 class MemberModel {
-  final String id = DateTime.now().toString();
-  late String name;
+  late final String id;
+  String? name;
 
   MemberModel({
-    required this.name,
-  });
-  MemberModel.fromJson(Map<String, dynamic> json) {
-    name = json["name"];
+    this.name,
+  }) {
+    id = DateTime.now().toString();
   }
+  MemberModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+  }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'name': name ?? '',
+      };
 }
