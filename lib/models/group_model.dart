@@ -1,7 +1,7 @@
 class GroupModel {
   final String id = DateTime.now().toString();
   String? title;
-  Set<String>? memberIds;
+  List<String>? memberIds;
 
   GroupModel({
     this.title,
@@ -9,9 +9,15 @@ class GroupModel {
   });
   GroupModel.fromJson(Map<String, dynamic> json) {
     title = json["title"];
-    memberIds ??= {};
+    memberIds ??= [];
     for (var member in json["memberIds"]) {
       memberIds!.add(member["id"]);
     }
   }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'title': title ?? '',
+        'memberIds': memberIds == null ? [] : memberIds.toString(),
+      };
 }
