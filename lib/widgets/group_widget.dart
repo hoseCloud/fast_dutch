@@ -21,15 +21,9 @@ class Group extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  groupModel.title ?? '',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                Text(groupModel.id),
-              ],
+            Text(
+              groupModel.title ?? '',
+              style: Theme.of(context).textTheme.titleLarge,
             ),
             const Text('members'),
           ],

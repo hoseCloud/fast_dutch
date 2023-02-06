@@ -20,29 +20,17 @@ class Receipt extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  receiptModel.title ?? '',
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                Text(receiptModel.id),
-              ],
+            Text(
+              receiptModel.title ?? '',
+              style: Theme.of(context).textTheme.titleLarge,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  receiptModel.price == null
-                      ? '0'
-                      : receiptModel.price.toString(),
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
-                const Text('members'),
-              ],
+            Text(
+              receiptModel.price == null ? '0' : receiptModel.price.toString(),
+              style: Theme.of(context).textTheme.titleMedium,
             ),
+            const Text('members'),
           ],
         ),
       ),
