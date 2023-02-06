@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class ReceiptModel {
   late final String id;
   String? groupId;
@@ -19,13 +21,13 @@ class ReceiptModel {
     id = json['id'];
     groupId = json['group'];
     title = json['title'];
-    price = int.parse(json['price']);
+    price = int.parse(json['price'] ?? '0');
     payerIds ??= [];
-    for (var payerId in json['payerIds']) {
+    for (var payerId in jsonDecode(json['payerIds'])) {
       payerIds!.add(payerId['id']);
     }
     dutchIds ??= [];
-    for (var dutchId in json["dutchIds"]) {
+    for (var dutchId in jsonDecode(json["dutchIds"])) {
       dutchIds!.add(dutchId['id']);
     }
   }
