@@ -18,23 +18,21 @@ class Group extends StatelessWidget {
           color: Colors.amber,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    groupModel.title ?? '',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  Text(groupModel.id),
-                ],
-              ),
-              const Text('members'),
-            ],
-          ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  groupModel.title ?? '',
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+                Text(groupModel.id),
+              ],
+            ),
+            const Text('members'),
+          ],
         ),
       ),
     );

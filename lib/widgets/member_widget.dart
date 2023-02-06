@@ -19,11 +19,9 @@ class Member extends StatelessWidget {
           color: Colors.amber,
           borderRadius: BorderRadius.circular(10),
         ),
-        child: SingleChildScrollView(
-          child: Text(
-            memberModel.name ?? '',
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
+        child: Text(
+          memberModel.name ?? '',
+          style: Theme.of(context).textTheme.titleLarge,
         ),
       ),
     );
