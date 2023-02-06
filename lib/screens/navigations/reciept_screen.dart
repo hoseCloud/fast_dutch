@@ -16,7 +16,7 @@ class RecieptScreen extends StatefulWidget {
 
 class _RecieptScreenState extends State<RecieptScreen> {
   late final SharedPreferences prefs;
-  late final List<String>? receipts;
+  late List<String>? receipts;
   final List<Widget> receiptWidgets = [];
 
   @override
@@ -25,17 +25,22 @@ class _RecieptScreenState extends State<RecieptScreen> {
     initReceipts();
   }
 
-  void onTapAddReciept() {
-    Navigator.push(
+  void onTapAddReciept() async {
+    await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => const AddRecieptScreen(),
       ),
     );
+    refreshReceipts();
   }
 
   void initReceipts() async {
     prefs = await SharedPreferences.getInstance();
+    refreshReceipts();
+  }
+
+  void refreshReceipts() {
     receipts = prefs.getStringList('receipt');
 
     setState(() {

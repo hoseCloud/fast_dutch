@@ -16,7 +16,7 @@ class GroupScreen extends StatefulWidget {
 
 class _GroupScreenState extends State<GroupScreen> {
   late final SharedPreferences prefs;
-  late final List<String>? groups;
+  late List<String>? groups;
   final List<Widget> groupWidgets = [];
 
   @override
@@ -25,17 +25,22 @@ class _GroupScreenState extends State<GroupScreen> {
     initGroups();
   }
 
-  void onTapAddGroup() {
-    Navigator.push(
+  void onTapAddGroup() async {
+    await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => const AddGroupScreen(),
       ),
     );
+    refreshGroups();
   }
 
   void initGroups() async {
     prefs = await SharedPreferences.getInstance();
+    refreshGroups();
+  }
+
+  void refreshGroups() {
     groups = prefs.getStringList('group');
 
     setState(() {

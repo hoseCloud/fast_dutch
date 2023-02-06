@@ -16,7 +16,7 @@ class MemberScreen extends StatefulWidget {
 
 class _MemberScreenState extends State<MemberScreen> {
   late final SharedPreferences prefs;
-  late final List<String>? members;
+  late List<String>? members;
   final List<Widget> memberWidgets = [];
 
   @override
@@ -25,17 +25,22 @@ class _MemberScreenState extends State<MemberScreen> {
     initMembers();
   }
 
-  void onTapAddMember() {
-    Navigator.push(
+  void onTapAddMember() async {
+    await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => const AddMemberScreen(),
       ),
     );
+    refreshMembers();
   }
 
   void initMembers() async {
     prefs = await SharedPreferences.getInstance();
+    refreshMembers();
+  }
+
+  void refreshMembers() {
     members = prefs.getStringList('member');
 
     setState(() {
