@@ -1,8 +1,11 @@
+import 'package:fast_dutch/models/group_model.dart';
 import 'package:flutter/material.dart';
 
 class Group extends StatelessWidget {
+  final GroupModel groupModel;
   const Group({
     super.key,
+    required this.groupModel,
   });
 
   @override
@@ -23,10 +26,10 @@ class Group extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'title',
+                    groupModel.title ?? '',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  const Text('2023-01-25 18:54'),
+                  Text(groupModel.id),
                 ],
               ),
               const Text('members'),

@@ -1,8 +1,12 @@
+import 'package:fast_dutch/models/receipt_model.dart';
 import 'package:flutter/material.dart';
 
-class Reciept extends StatelessWidget {
-  const Reciept({
+class Receipt extends StatelessWidget {
+  final ReceiptModel receiptModel;
+
+  const Receipt({
     super.key,
+    required this.receiptModel,
   });
 
   @override
@@ -22,17 +26,19 @@ class Reciept extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'title',
+                    receiptModel.title ?? '',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  const Text('2023-01-25 18:54'),
+                  Text(receiptModel.id),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '60000 won',
+                    receiptModel.price == null
+                        ? '0'
+                        : receiptModel.price.toString(),
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const Text('members'),

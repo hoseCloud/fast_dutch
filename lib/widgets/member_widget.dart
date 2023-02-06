@@ -1,8 +1,12 @@
+import 'package:fast_dutch/models/member_model.dart';
 import 'package:flutter/material.dart';
 
 class Member extends StatelessWidget {
+  final MemberModel memberModel;
+
   const Member({
     super.key,
+    required this.memberModel,
   });
 
   @override
@@ -17,7 +21,7 @@ class Member extends StatelessWidget {
         ),
         child: SingleChildScrollView(
           child: Text(
-            'name',
+            memberModel.name ?? '',
             style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
