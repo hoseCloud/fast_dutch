@@ -1,3 +1,4 @@
+
 import 'dart:convert';
 
 import 'package:fast_dutch/models/receipt_model.dart';
@@ -6,18 +7,18 @@ import 'package:fast_dutch/widgets/input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AddRecieptScreen extends StatefulWidget {
+class AddReceiptScreen extends StatefulWidget {
   final String? group;
-  const AddRecieptScreen({
+  const AddReceiptScreen({
     super.key,
     this.group,
   });
 
   @override
-  State<AddRecieptScreen> createState() => _AddRecieptScreenState();
+  State<AddReceiptScreen> createState() => _AddReceiptScreenState();
 }
 
-class _AddRecieptScreenState extends State<AddRecieptScreen> {
+class _AddReceiptScreenState extends State<AddReceiptScreen> {
   ReceiptModel receiptData = ReceiptModel();
   late List<Widget> inputs = [
     Input(

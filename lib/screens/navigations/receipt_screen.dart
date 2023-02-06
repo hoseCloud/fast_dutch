@@ -1,20 +1,20 @@
 import 'dart:convert';
 
 import 'package:fast_dutch/models/receipt_model.dart';
-import 'package:fast_dutch/screens/add_models/add_reciept_screen.dart';
+import 'package:fast_dutch/screens/add_models/add_receipt_screen.dart';
 import 'package:fast_dutch/widgets/navigation_widget.dart';
 import 'package:fast_dutch/widgets/receipt_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class RecieptScreen extends StatefulWidget {
-  const RecieptScreen({super.key});
+class ReceiptScreen extends StatefulWidget {
+  const ReceiptScreen({super.key});
 
   @override
-  State<RecieptScreen> createState() => _RecieptScreenState();
+  State<ReceiptScreen> createState() => _ReceiptScreenState();
 }
 
-class _RecieptScreenState extends State<RecieptScreen> {
+class _ReceiptScreenState extends State<ReceiptScreen> {
   late final SharedPreferences prefs;
   late List<String>? receipts;
   final List<Widget> receiptWidgets = [];
@@ -25,11 +25,11 @@ class _RecieptScreenState extends State<RecieptScreen> {
     initReceipts();
   }
 
-  void onTapAddReciept() async {
+  void onTapAddReceipt() async {
     await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const AddRecieptScreen(),
+        builder: (context) => const AddReceiptScreen(),
       ),
     );
     refreshReceipts();
@@ -54,12 +54,12 @@ class _RecieptScreenState extends State<RecieptScreen> {
   @override
   Widget build(BuildContext context) {
     return Navigation(
-      emptyMsg: 'No any reciept!',
-      emptyButtonMsg: 'Add reciept',
-      addButtonMsg: 'Add reciept',
+      emptyMsg: 'No any receipt!',
+      emptyButtonMsg: 'Add receipt',
+      addButtonMsg: 'Add receipt',
       widgets: receiptWidgets,
-      onTapAddFunc: onTapAddReciept,
-      onTapEmptyFunc: onTapAddReciept,
+      onTapAddFunc: onTapAddReceipt,
+      onTapEmptyFunc: onTapAddReceipt,
     );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:fast_dutch/screens/add_models/add_reciept_screen.dart';
+import 'package:fast_dutch/screens/add_models/add_receipt_screen.dart';
 import 'package:fast_dutch/widgets/navigation_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -10,11 +10,11 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  void onTapAddReciept() {
+  void onTapAddReceipt() {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => const AddRecieptScreen(
+        builder: (context) => const AddReceiptScreen(
           group: 'hello',
         ),
       ),
@@ -30,9 +30,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return Navigation(
       emptyMsg: 'No choose group!',
       emptyButtonMsg: 'Choose group',
-      addButtonMsg: 'Add reciept',
+      addButtonMsg: 'Add receipt',
       widgets: const [],
-      onTapAddFunc: onTapAddReciept,
+      onTapAddFunc: onTapAddReceipt,
       onTapEmptyFunc: onTapAddGroup,
     );
   }
