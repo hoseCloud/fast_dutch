@@ -1,4 +1,4 @@
-import 'package:fast_dutch/screens/main_screen.dart';
+import 'package:fast_dutch/screens/navigations/main_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {

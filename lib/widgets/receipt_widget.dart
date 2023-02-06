@@ -1,50 +1,12 @@
+import 'package:fast_dutch/models/receipt_model.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class Receipt extends StatelessWidget {
+  final ReceiptModel receiptModel;
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          Flexible(
-            flex: 4,
-            child: ListView(
-              children: const [
-                Reciept(),
-                Reciept(),
-                Reciept(),
-                Reciept(),
-                Reciept(),
-                Reciept(),
-                Reciept(),
-                Reciept(),
-                Reciept(),
-              ],
-            ),
-          ),
-          Flexible(
-            flex: 1,
-            child: Container(
-              color: Colors.red,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class Reciept extends StatelessWidget {
-  const Reciept({
+  const Receipt({
     super.key,
+    required this.receiptModel,
   });
 
   @override
@@ -64,17 +26,19 @@ class Reciept extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    'title',
+                    receiptModel.title ?? '',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
-                  const Text('2023-01-25 18:54'),
+                  Text(receiptModel.id),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    '60000 won',
+                    receiptModel.price == null
+                        ? '0'
+                        : receiptModel.price.toString(),
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const Text('members'),
