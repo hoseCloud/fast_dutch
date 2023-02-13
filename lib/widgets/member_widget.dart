@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:fast_dutch/models/member_model.dart';
+import 'package:fast_dutch/widgets/navigation_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Member extends StatefulWidget {
   final MemberModel memberModel;
@@ -38,6 +42,29 @@ class _MemberState extends State<Member> {
     );
   }
 
+  void onTapEdit() {
+    print('edit!');
+  }
+
+  void onTapDelete() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> members = prefs.getStringList('member') ?? [];
+    late String target;
+
+    for (var member in members) {
+      var json = jsonDecode(member);
+      if (json['id'] == widget.memberModel.id) {
+        target = member;
+        break;
+      }
+    }
+
+    setState(() {
+      members.remove(target);
+      prefs.setStringList('member', members);
+    });
+  }
+
   Widget memberOpen(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,6 +76,22 @@ class _MemberState extends State<Member> {
         Text(
           widget.memberModel.name ?? '',
           style: Theme.of(context).textTheme.titleLarge,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Button(
+              buttonMsg: 'edit',
+              onTapFunc: onTapEdit,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Button(
+              buttonMsg: 'delete',
+              onTapFunc: onTapDelete,
+            ),
+          ],
         ),
       ],
     );
