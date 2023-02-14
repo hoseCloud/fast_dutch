@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:fast_dutch/models/member_model.dart';
-import 'package:fast_dutch/widgets/input_screen_widget.dart';
+import 'package:fast_dutch/screens/input_screen.dart';
 import 'package:fast_dutch/widgets/input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
