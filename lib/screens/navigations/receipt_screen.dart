@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:fast_dutch/models/receipt_model.dart';
 import 'package:fast_dutch/screens/add_models/add_receipt_screen.dart';
 import 'package:fast_dutch/widgets/navigation_widget.dart';
-import 'package:fast_dutch/widgets/receipt_widget.dart';
+import 'package:fast_dutch/widgets/receipt_card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -46,7 +46,7 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
     setState(() {
       for (var receipt in receipts ?? []) {
         var receiptModel = ReceiptModel.fromJson(jsonDecode(receipt));
-        receiptWidgets.add(Receipt(receiptModel: receiptModel));
+        receiptWidgets.add(ReceiptCard(receiptModel: receiptModel));
       }
     });
   }

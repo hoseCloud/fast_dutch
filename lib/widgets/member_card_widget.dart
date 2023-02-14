@@ -5,19 +5,19 @@ import 'package:fast_dutch/widgets/navigation_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Member extends StatefulWidget {
+class MemberCard extends StatefulWidget {
   final MemberModel memberModel;
 
-  const Member({
+  const MemberCard({
     super.key,
     required this.memberModel,
   });
 
   @override
-  State<Member> createState() => _MemberState();
+  State<MemberCard> createState() => _MemberCardState();
 }
 
-class _MemberState extends State<Member> {
+class _MemberCardState extends State<MemberCard> {
   bool isOpen = false;
 
   @override
@@ -36,7 +36,7 @@ class _MemberState extends State<Member> {
             color: Colors.amber,
             borderRadius: BorderRadius.circular(10),
           ),
-          child: isOpen ? memberOpen(context) : memberClose(context),
+          child: isOpen ? memberCardOpen(context) : memberCardClose(context),
         ),
       ),
     );
@@ -65,7 +65,7 @@ class _MemberState extends State<Member> {
     });
   }
 
-  Widget memberOpen(BuildContext context) {
+  Widget memberCardOpen(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -97,7 +97,7 @@ class _MemberState extends State<Member> {
     );
   }
 
-  Widget memberClose(BuildContext context) {
+  Widget memberCardClose(BuildContext context) {
     return Text(
       widget.memberModel.name ?? '',
       style: Theme.of(context).textTheme.titleLarge,

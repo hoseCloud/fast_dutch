@@ -1,19 +1,19 @@
 import 'package:fast_dutch/models/receipt_model.dart';
 import 'package:flutter/material.dart';
 
-class Receipt extends StatefulWidget {
+class ReceiptCard extends StatefulWidget {
   final ReceiptModel receiptModel;
 
-  const Receipt({
+  const ReceiptCard({
     super.key,
     required this.receiptModel,
   });
 
   @override
-  State<Receipt> createState() => _ReceiptState();
+  State<ReceiptCard> createState() => _ReceiptCardState();
 }
 
-class _ReceiptState extends State<Receipt> {
+class _ReceiptCardState extends State<ReceiptCard> {
   bool isOpen = false;
 
   @override
@@ -32,13 +32,13 @@ class _ReceiptState extends State<Receipt> {
             color: Colors.amber,
             borderRadius: BorderRadius.circular(10),
           ),
-          child: isOpen ? receiptOpen(context) : receiptClose(context),
+          child: isOpen ? receiptCardOpen(context) : receiptCardClose(context),
         ),
       ),
     );
   }
 
-  Column receiptOpen(BuildContext context) {
+  Column receiptCardOpen(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -72,7 +72,7 @@ class _ReceiptState extends State<Receipt> {
     );
   }
 
-  Column receiptClose(BuildContext context) {
+  Column receiptCardClose(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

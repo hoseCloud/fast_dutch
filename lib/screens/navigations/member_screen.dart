@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:fast_dutch/models/member_model.dart';
 import 'package:fast_dutch/screens/add_models/add_member_screen.dart';
-import 'package:fast_dutch/widgets/member_widget.dart';
+import 'package:fast_dutch/widgets/member_card_widget.dart';
 import 'package:fast_dutch/widgets/navigation_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -46,7 +46,7 @@ class _MemberScreenState extends State<MemberScreen> {
     setState(() {
       for (var member in members ?? []) {
         var memberModel = MemberModel.fromJson(jsonDecode(member));
-        memberWidgets.add(Member(
+        memberWidgets.add(MemberCard(
           memberModel: memberModel,
         ));
       }

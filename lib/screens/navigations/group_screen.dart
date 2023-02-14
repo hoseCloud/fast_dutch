@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:fast_dutch/models/group_model.dart';
 import 'package:fast_dutch/screens/add_models/add_group_screen.dart';
-import 'package:fast_dutch/widgets/group_widget.dart';
+import 'package:fast_dutch/widgets/group_card_widget.dart';
 import 'package:fast_dutch/widgets/navigation_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -46,7 +46,7 @@ class _GroupScreenState extends State<GroupScreen> {
     setState(() {
       for (var group in groups ?? []) {
         var groupModel = GroupModel.fromJson(jsonDecode(group));
-        groupWidgets.add(Group(groupModel: groupModel));
+        groupWidgets.add(GroupCard(groupModel: groupModel));
       }
     });
   }

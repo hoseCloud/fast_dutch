@@ -1,18 +1,18 @@
 import 'package:fast_dutch/models/group_model.dart';
 import 'package:flutter/material.dart';
 
-class Group extends StatefulWidget {
+class GroupCard extends StatefulWidget {
   final GroupModel groupModel;
-  const Group({
+  const GroupCard({
     super.key,
     required this.groupModel,
   });
 
   @override
-  State<Group> createState() => _GroupState();
+  State<GroupCard> createState() => _GroupCardState();
 }
 
-class _GroupState extends State<Group> {
+class _GroupCardState extends State<GroupCard> {
   bool isOpen = false;
 
   @override
@@ -31,13 +31,13 @@ class _GroupState extends State<Group> {
             color: Colors.amber,
             borderRadius: BorderRadius.circular(10),
           ),
-          child: isOpen ? groupOpen(context) : groupClose(context),
+          child: isOpen ? groupCardOpen(context) : groupCardClose(context),
         ),
       ),
     );
   }
 
-  Column groupOpen(BuildContext context) {
+  Column groupCardOpen(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -57,7 +57,7 @@ class _GroupState extends State<Group> {
     );
   }
 
-  Column groupClose(BuildContext context) {
+  Column groupCardClose(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
