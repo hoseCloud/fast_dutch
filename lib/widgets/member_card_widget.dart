@@ -57,15 +57,14 @@ class _MemberCardState extends State<MemberCard> {
       var json = jsonDecode(member);
       if (json['id'] == widget.memberModel.id) {
         target = member;
+        setState(() {
+          members.remove(target);
+          prefs.setStringList('member', members);
+          widget.refreshMemberFunc();
+        });
         break;
       }
     }
-
-    setState(() {
-      members.remove(target);
-      prefs.setStringList('member', members);
-      widget.refreshMemberFunc();
-    });
   }
 
   Widget memberCardOpen(BuildContext context) {

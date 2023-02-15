@@ -17,7 +17,7 @@ class GroupScreen extends StatefulWidget {
 class _GroupScreenState extends State<GroupScreen> {
   late final SharedPreferences prefs;
   late List<String>? groups;
-  final List<Widget> groupWidgets = [];
+  List<Widget> groupWidgets = [];
 
   @override
   void initState() {
@@ -42,11 +42,15 @@ class _GroupScreenState extends State<GroupScreen> {
 
   void refreshGroups() {
     groups = prefs.getStringList('group');
+    groupWidgets = [];
 
     setState(() {
       for (var group in groups ?? []) {
         var groupModel = GroupModel.fromJson(jsonDecode(group));
-        groupWidgets.add(GroupCard(groupModel: groupModel));
+        groupWidgets.add(GroupCard(
+          groupModel: groupModel,
+          refreshGroupFunc: refreshGroups,
+        ));
       }
     });
   }

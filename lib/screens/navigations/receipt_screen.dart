@@ -17,7 +17,7 @@ class ReceiptScreen extends StatefulWidget {
 class _ReceiptScreenState extends State<ReceiptScreen> {
   late final SharedPreferences prefs;
   late List<String>? receipts;
-  final List<Widget> receiptWidgets = [];
+  List<Widget> receiptWidgets = [];
 
   @override
   void initState() {
@@ -42,11 +42,15 @@ class _ReceiptScreenState extends State<ReceiptScreen> {
 
   void refreshReceipts() {
     receipts = prefs.getStringList('receipt');
+    receiptWidgets = [];
 
     setState(() {
       for (var receipt in receipts ?? []) {
         var receiptModel = ReceiptModel.fromJson(jsonDecode(receipt));
-        receiptWidgets.add(ReceiptCard(receiptModel: receiptModel));
+        receiptWidgets.add(ReceiptCard(
+          receiptModel: receiptModel,
+          refreshReceiptFunc: refreshReceipts,
+        ));
       }
     });
   }

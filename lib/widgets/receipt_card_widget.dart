@@ -1,12 +1,18 @@
+import 'dart:convert';
+
 import 'package:fast_dutch/models/receipt_model.dart';
+import 'package:fast_dutch/widgets/navigation_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ReceiptCard extends StatefulWidget {
   final ReceiptModel receiptModel;
+  final Function() refreshReceiptFunc;
 
   const ReceiptCard({
     super.key,
     required this.receiptModel,
+    required this.refreshReceiptFunc,
   });
 
   @override
@@ -38,6 +44,29 @@ class _ReceiptCardState extends State<ReceiptCard> {
     );
   }
 
+  void onTapEdit() {
+    print('edit!');
+  }
+
+  void onTapDelete() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    List<String> receipts = prefs.getStringList('receipt') ?? [];
+    late String target;
+
+    for (var receipt in receipts) {
+      var json = jsonDecode(receipt);
+      if (json['id'] == widget.receiptModel.id) {
+        target = receipt;
+        setState(() {
+          receipts.remove(target);
+          prefs.setStringList('receipt', receipts);
+          widget.refreshReceiptFunc();
+        });
+        break;
+      }
+    }
+  }
+
   Column receiptCardOpen(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,6 +96,22 @@ class _ReceiptCardState extends State<ReceiptCard> {
         Text(
           'dutch',
           style: Theme.of(context).textTheme.titleMedium,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Button(
+              buttonMsg: 'edit',
+              onTapFunc: onTapEdit,
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+            Button(
+              buttonMsg: 'delete',
+              onTapFunc: onTapDelete,
+            ),
+          ],
         ),
       ],
     );
