@@ -7,10 +7,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class MemberCard extends StatefulWidget {
   final MemberModel memberModel;
+  final Function() refreshMemberFunc;
 
   const MemberCard({
     super.key,
     required this.memberModel,
+    required this.refreshMemberFunc,
   });
 
   @override
@@ -62,6 +64,7 @@ class _MemberCardState extends State<MemberCard> {
     setState(() {
       members.remove(target);
       prefs.setStringList('member', members);
+      widget.refreshMemberFunc();
     });
   }
 

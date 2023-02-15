@@ -17,7 +17,7 @@ class MemberScreen extends StatefulWidget {
 class _MemberScreenState extends State<MemberScreen> {
   late final SharedPreferences prefs;
   late List<String>? members;
-  final List<Widget> memberWidgets = [];
+  List<Widget> memberWidgets = [];
 
   @override
   void initState() {
@@ -42,12 +42,14 @@ class _MemberScreenState extends State<MemberScreen> {
 
   void refreshMembers() {
     members = prefs.getStringList('member');
+    memberWidgets = [];
 
     setState(() {
       for (var member in members ?? []) {
         var memberModel = MemberModel.fromJson(jsonDecode(member));
         memberWidgets.add(MemberCard(
           memberModel: memberModel,
+          refreshMemberFunc: refreshMembers,
         ));
       }
     });
