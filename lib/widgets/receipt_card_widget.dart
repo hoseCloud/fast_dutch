@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fast_dutch/models/receipt_model.dart';
+import 'package:fast_dutch/screens/edit_models/edit_receipt_screen.dart';
 import 'package:fast_dutch/widgets/navigation_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -44,8 +45,16 @@ class _ReceiptCardState extends State<ReceiptCard> {
     );
   }
 
-  void onTapEdit() {
-    print('edit!');
+  void onTapEdit() async {
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => EditReceiptScreen(
+          receiptModel: widget.receiptModel,
+        ),
+      ),
+    );
+    widget.refreshReceiptFunc();
   }
 
   void onTapDelete() async {
