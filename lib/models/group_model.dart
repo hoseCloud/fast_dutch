@@ -9,7 +9,7 @@ class GroupModel {
     this.title,
     this.memberIds,
   }) {
-    DateTime.now().toString();
+    id = DateTime.now().toString();
   }
   GroupModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
