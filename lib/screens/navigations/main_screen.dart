@@ -1,7 +1,7 @@
 import 'package:fast_dutch/screens/navigations/group_screen.dart';
 import 'package:fast_dutch/screens/navigations/home_screen.dart';
 import 'package:fast_dutch/screens/navigations/member_screen.dart';
-import 'package:fast_dutch/screens/navigations/reciept_screen.dart';
+import 'package:fast_dutch/screens/navigations/receipt_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -11,7 +11,7 @@ class MainScreen extends StatefulWidget {
     const HomeScreen(),
     const GroupScreen(),
     const MemberScreen(),
-    const RecieptScreen(),
+    const ReceiptScreen(),
   ];
 
   @override
@@ -49,7 +49,7 @@ class _MainScreenState extends State<MainScreen> {
             icon: Icon(Icons.person),
           ),
           BottomNavigationBarItem(
-            label: 'reciept',
+            label: 'receipt',
             icon: Icon(Icons.receipt_long),
           ),
         ],

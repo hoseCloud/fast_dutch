@@ -1,15 +1,18 @@
 import 'dart:convert';
 
 class GroupModel {
-  final String id = DateTime.now().toString();
+  late final String id;
   String? title;
   List<String>? memberIds;
 
   GroupModel({
     this.title,
     this.memberIds,
-  });
+  }) {
+    id = DateTime.now().toString();
+  }
   GroupModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
     title = json["title"];
     memberIds ??= [];
     for (var member in jsonDecode(json["memberIds"])) {

@@ -1,27 +1,28 @@
 import 'dart:convert';
 
 import 'package:fast_dutch/models/receipt_model.dart';
-import 'package:fast_dutch/widgets/input_screen_widget.dart';
+import 'package:fast_dutch/screens/input_screen.dart';
 import 'package:fast_dutch/widgets/input_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AddRecieptScreen extends StatefulWidget {
-  final String? group;
-  const AddRecieptScreen({
+class EditReceiptScreen extends StatefulWidget {
+  const EditReceiptScreen({
     super.key,
-    this.group,
+    this.receiptModel,
   });
+  final ReceiptModel? receiptModel;
 
   @override
-  State<AddRecieptScreen> createState() => _AddRecieptScreenState();
+  State<EditReceiptScreen> createState() => _EditReceiptScreenState();
 }
 
-class _AddRecieptScreenState extends State<AddRecieptScreen> {
+class _EditReceiptScreenState extends State<EditReceiptScreen> {
   ReceiptModel receiptData = ReceiptModel();
   late List<Widget> inputs = [
     Input(
       title: '모임',
+      initialValue: widget.receiptModel?.groupId,
       onSaved: (str) {
         setState(() {
           receiptData.groupId = str;
@@ -33,6 +34,7 @@ class _AddRecieptScreenState extends State<AddRecieptScreen> {
     ),
     Input(
       title: '제목',
+      initialValue: widget.receiptModel?.title,
       onSaved: (str) {
         setState(() {
           receiptData.title = str;
@@ -44,6 +46,7 @@ class _AddRecieptScreenState extends State<AddRecieptScreen> {
     ),
     Input(
       title: '가격',
+      initialValue: widget.receiptModel?.price.toString(),
       onSaved: (str) {
         setState(() {
           try {
@@ -59,6 +62,7 @@ class _AddRecieptScreenState extends State<AddRecieptScreen> {
     ),
     Input(
       title: '결제한 사람',
+      initialValue: '',
       onSaved: (str) {
         setState(() {
           receiptData.payerIds = [];
@@ -70,6 +74,7 @@ class _AddRecieptScreenState extends State<AddRecieptScreen> {
     ),
     Input(
       title: '더치한 사람',
+      initialValue: '',
       onSaved: (str) {
         setState(() {
           receiptData.dutchIds = [];
@@ -81,26 +86,29 @@ class _AddRecieptScreenState extends State<AddRecieptScreen> {
     ),
   ];
 
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  void onTapAddReceipt() async {
+  void onTapEditReceipt() async {
     const keyReceipt = "receipt";
-    final prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
     List<String> receipts = prefs.getStringList(keyReceipt) ?? [];
 
-    receipts.add(jsonEncode(receiptData.toJson()));
-    prefs.setStringList(keyReceipt, receipts);
+    for (var receipt in receipts) {
+      var json = jsonDecode(receipt);
+      if (json['id'] == widget.receiptModel!.id) {
+        int index = receipts.indexOf(receipt);
+        receipts.removeAt(index);
+        receipts.insert(index, jsonEncode(receiptData.toJson()));
+        prefs.setStringList(keyReceipt, receipts);
+        break;
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return InputScreen(
-      appBarMsg: 'Add Receipt',
+      appBarMsg: 'Edit Receipt',
       inputs: inputs,
-      onTapFunc: onTapAddReceipt,
+      onTapFunc: onTapEditReceipt,
     );
   }
 }

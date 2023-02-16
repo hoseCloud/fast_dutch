@@ -36,6 +36,7 @@ class InputScreen extends StatelessWidget {
                       if (formKey.currentState!.validate()) {
                         formKey.currentState!.save();
                         onTapFunc();
+                        Navigator.pop(context);
                       }
                     },
                     child: Container(
