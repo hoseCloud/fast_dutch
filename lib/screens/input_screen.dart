@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class InputScreen extends StatelessWidget {
@@ -37,6 +36,7 @@ class InputScreen extends StatelessWidget {
                       if (formKey.currentState!.validate()) {
                         formKey.currentState!.save();
                         onTapFunc();
+                        Navigator.pop(context);
                       }
                     },
                     child: Container(
