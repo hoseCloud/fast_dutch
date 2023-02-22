@@ -1,4 +1,4 @@
-import 'package:fast_dutch/new_widget/button_widget.dart';
+import 'package:fast_dutch/widgets/button_widget.dart';
 import 'package:flutter/material.dart';
 
 class NavigationWidget extends StatelessWidget {
