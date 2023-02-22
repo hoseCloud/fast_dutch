@@ -6,6 +6,22 @@ class MemberScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const NavigationWidget(widgets: []);
+    return NavigationWidget(
+      isEmpty: [].isEmpty,
+      filledNavigationWidget: FilledNavigationWidget(
+        widgets: const [],
+        buttonMsg: 'Add member',
+        onTapButtonFunc: () {
+          print('click!');
+        },
+      ),
+      emptiedNavigationWidget: EmptiedNavigationWidget(
+        msg: 'No member!',
+        buttonMsg: 'Add member',
+        onTapButtonFunc: () {
+          print('click!');
+        },
+      ),
+    );
   }
 }

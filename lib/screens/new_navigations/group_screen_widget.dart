@@ -6,6 +6,22 @@ class GroupScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const NavigationWidget(widgets: []);
+    return NavigationWidget(
+      isEmpty: [].isEmpty,
+      filledNavigationWidget: FilledNavigationWidget(
+        widgets: const [],
+        buttonMsg: 'Add Group',
+        onTapButtonFunc: () {
+          print('click!');
+        },
+      ),
+      emptiedNavigationWidget: EmptiedNavigationWidget(
+        msg: 'No group!',
+        buttonMsg: 'Add group',
+        onTapButtonFunc: () {
+          print('click!');
+        },
+      ),
+    );
   }
 }
